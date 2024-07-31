@@ -21,4 +21,3 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 }
-

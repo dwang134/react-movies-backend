@@ -5,7 +5,7 @@ import com.dwang134.react_movies.model.TrendingMovie;
 import com.dwang134.react_movies.model.TrendingPeople;
 import com.dwang134.react_movies.repository.TrendingAllRepository;
 import com.dwang134.react_movies.repository.TrendingMovieRepository;
-import com.dwang134.react_movies.repository.TrendingPersonRepository;
+import com.dwang134.react_movies.repository.TrendingPeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class TrendingService {
     private TrendingMovieRepository trendingMovieRepository;
 
     @Autowired
-    private TrendingPersonRepository trendingPersonRepository;
+    private TrendingPeopleRepository trendingPersonRepository;
 
     public List<TrendingAll> getAllTrendingAll() {
         return trendingAllRepository.findAll();
