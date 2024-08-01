@@ -16,4 +16,8 @@ public class AiringTodayService {
     public List<AiringToday> getAllAiringToday() {
         return airingTodayRepository.findAll();
     }
+
+    public AiringToday getAiringTodayById(int id) {
+        return airingTodayRepository.findById(id).orElse(null);
+    }
 }
