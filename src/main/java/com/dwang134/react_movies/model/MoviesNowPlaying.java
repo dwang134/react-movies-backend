@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "now_playing")
+@Document(collection = "movies_nowPlaying")
 public class MoviesNowPlaying {
 
     @Id
-    private ObjectId id;
+    private ObjectId _id;  // MongoDB ObjectId
+    private int id;  // Custom id field
     private boolean adult;
     private String backdrop_path;
     private List<Integer> genre_ids;
-    private int movieId;  // Changed to movieId to avoid conflict with ObjectId id
     private String original_language;
     private String original_title;
     private String overview;
@@ -28,11 +28,19 @@ public class MoviesNowPlaying {
 
     // Getters and setters
 
-    public ObjectId getId() {
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -58,14 +66,6 @@ public class MoviesNowPlaying {
 
     public void setGenre_ids(List<Integer> genre_ids) {
         this.genre_ids = genre_ids;
-    }
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
     }
 
     public String getOriginal_language() {

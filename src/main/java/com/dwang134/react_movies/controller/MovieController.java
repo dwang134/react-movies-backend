@@ -16,7 +16,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/now_playing")
+    @GetMapping("/movie/now_playing")
     public List<MoviesNowPlaying> getAllMovies() {
         return movieService.getAllMovies();
     }

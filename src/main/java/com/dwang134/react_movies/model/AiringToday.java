@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "airing_today")
+@Document(collection = "tv_airingToday")
 public class AiringToday {
 
     @Id
-    private ObjectId id;
+    private ObjectId _id; // MongoDB ObjectId
+    private int id;  // Custom id field
     private boolean adult;
     private String backdrop_path;
     private List<Integer> genre_ids;
-    private int showId;  // Changed to showId to avoid conflict with ObjectId id
     private List<String> origin_country;
     private String original_language;
     private String original_name;
@@ -28,11 +28,19 @@ public class AiringToday {
 
     // Getters and setters
 
-    public ObjectId getId() {
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -58,14 +66,6 @@ public class AiringToday {
 
     public void setGenre_ids(List<Integer> genre_ids) {
         this.genre_ids = genre_ids;
-    }
-
-    public int getShowId() {
-        return showId;
-    }
-
-    public void setShowId(int showId) {
-        this.showId = showId;
     }
 
     public List<String> getOrigin_country() {
