@@ -13,7 +13,11 @@ public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public List<MoviesNowPlaying> getAllMovies() {
+    public List<MoviesNowPlaying> getAllMoviesNowPlaying() {
         return movieRepository.findAll();
+    }
+
+    public MoviesNowPlaying getMovieById(int id) {
+        return movieRepository.findById(id).orElse(null);
     }
 }

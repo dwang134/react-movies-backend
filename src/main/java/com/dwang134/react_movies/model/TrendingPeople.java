@@ -3,6 +3,7 @@ package com.dwang134.react_movies.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
@@ -10,8 +11,11 @@ import java.util.List;
 public class TrendingPeople {
 
     @Id
-    private ObjectId _id;  // MongoDB ObjectId
-    private int id;  // Custom id field
+    private ObjectId _id;
+
+    @Field("id")
+    private int personId;  // Custom personId field
+
     private String name;
     private String original_name;
     private String media_type;
@@ -172,12 +176,12 @@ public class TrendingPeople {
         this._id = _id;
     }
 
-    public int getId() {
-        return id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getName() {
