@@ -27,11 +27,23 @@ public class TrendingService {
         return trendingAllRepository.findAll();
     }
 
+    public TrendingAll getTrendingAllById(int id) {
+        return trendingAllRepository.findById(id).orElse(null);
+    }
+
     public List<TrendingMovie> getAllTrendingMovies() {
         return trendingMovieRepository.findAll();
     }
 
+    public TrendingMovie getTrendingMovieById(int id) {
+        return trendingMovieRepository.findById(id).orElse(null);
+    }
+
     public List<TrendingPeople> getAllTrendingPersons() {
         return trendingPersonRepository.findAll();
+    }
+
+    public TrendingPeople getTrendingPersonById(int personId) {
+        return trendingPersonRepository.findByPersonId(personId).orElse(null);
     }
 }
