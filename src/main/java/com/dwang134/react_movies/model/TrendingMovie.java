@@ -6,13 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "movie")
+@Document(collection = "trendingMovie")
 public class TrendingMovie {
 
     @Id
-    private ObjectId id;
+    private ObjectId _id;  // MongoDB ObjectId
+    private int id;  // Custom id field
     private String backdrop_path;
-    private int movieId;  // Changed to movieId to avoid conflict with ObjectId id
     private String title;
     private String original_title;
     private String overview;
@@ -29,11 +29,19 @@ public class TrendingMovie {
 
     // Getters and setters
 
-    public ObjectId getId() {
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,14 +51,6 @@ public class TrendingMovie {
 
     public void setBackdrop_path(String backdrop_path) {
         this.backdrop_path = backdrop_path;
-    }
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
     }
 
     public String getTitle() {

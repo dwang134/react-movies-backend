@@ -6,6 +6,7 @@ import com.dwang134.react_movies.model.TrendingPeople;
 import com.dwang134.react_movies.service.TrendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,12 @@ public class TrendingController {
 
     @GetMapping("/all")
     public List<TrendingAll> getAllTrendingAll() {
-        return trendingService.getAllTrendingAll();w
+        return trendingService.getAllTrendingAll();
+    }
+
+    @GetMapping("/all/{id}")
+    public TrendingAll getTrendingAllById(@PathVariable int id) {
+        return trendingService.getTrendingAllById(id);
     }
 
     @GetMapping("/movie")
@@ -28,8 +34,18 @@ public class TrendingController {
         return trendingService.getAllTrendingMovies();
     }
 
+    @GetMapping("/movie/{id}")
+    public TrendingMovie getTrendingMovieById(@PathVariable int id) {
+        return trendingService.getTrendingMovieById(id);
+    }
+
     @GetMapping("/person")
     public List<TrendingPeople> getAllTrendingPersons() {
         return trendingService.getAllTrendingPersons();
+    }
+
+    @GetMapping("/person/{personId}")
+    public TrendingPeople getTrendingPersonById(@PathVariable int personId) {
+        return trendingService.getTrendingPersonById(personId);
     }
 }
