@@ -39,4 +39,23 @@ public class MediaService {
     public List<Media> getFeaturedMediaByType(String type) {
         return mediaRepository.findByTypeAndFeaturedTrue(type);
     }
+
+    public Media updateMedia(String id, Media media) {
+        Optional<Media> existingMedia = mediaRepository.findById(id);
+        if (existingMedia.isPresent()) {
+            Media updatedMedia = existingMedia.get();
+            updatedMedia.setName(media.getName());
+            updatedMedia.setPrice(media.getPrice());
+            updatedMedia.setSynopsis(media.getSynopsis());
+            updatedMedia.setType(media.getType());
+            updatedMedia.setSmallPosterPath(media.getSmallPosterPath());
+            updatedMedia.setLargePosterPath(media.getLargePosterPath());
+            updatedMedia.setRentPrice(media.getRentPrice());
+            updatedMedia.setPurchasePrice(media.getPurchasePrice());
+            updatedMedia.setFeatured(media.isFeatured());
+            return mediaRepository.save(updatedMedia);
+        } else {
+            return null;
+        }
+    }
 }

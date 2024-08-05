@@ -75,4 +75,27 @@ public class MediaController {
         List<Media> mediaList = mediaService.getFeaturedMediaByType(type);
         return ResponseEntity.ok(mediaList);
     }
+
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateMedia(@PathVariable String id, @RequestBody Media media) {
+        if (media.getName() == null || media.getName().isEmpty() ||
+                media.getPrice() == 0.0 ||
+                media.getSynopsis() == null || media.getSynopsis().isEmpty() ||
+                media.getType() == null || media.getType().isEmpty() ||
+                media.getSmallPosterPath() == null || media.getSmallPosterPath().isEmpty() ||
+                media.getLargePosterPath() == null || media.getLargePosterPath().isEmpty() ||
+                media.getRentPrice() == 0.0 ||
+                media.getPurchasePrice() == 0.0) {
+            return ResponseEntity.badRequest().body("All fields are required.");
+        }
+
+        Media updatedMedia = mediaService.updateMedia(id, media);
+        if (updatedMedia != null) {
+            return ResponseEntity.ok(updatedMedia);
+        } else {
+            return ResponseEntity.badRequest().body("Invalid media ID.");
+        }
+    }
+
 }
