@@ -29,4 +29,13 @@ public class CustomerService {
     public Optional<Customer> findById(String id) {
         return customerRepository.findById(id);
     }
+
+    public boolean authenticateUser(String email, String password) {
+        Optional<Customer> userOptional = customerRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            Customer user = userOptional.get();
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false;
+    }
 }

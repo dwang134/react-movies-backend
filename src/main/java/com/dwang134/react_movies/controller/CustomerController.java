@@ -43,4 +43,19 @@ public class CustomerController {
             return ResponseEntity.badRequest().body("User not found.");
         }
     }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticateUser(@RequestBody Customer user) {
+        if (user.getEmail() == null || user.getEmail().isEmpty() ||
+                user.getPassword() == null || user.getPassword().isEmpty()) {
+            return ResponseEntity.badRequest().body("Email and password are required.");
+        }
+
+        boolean isAuthenticated = customerService.authenticateUser(user.getEmail(), user.getPassword());
+        if (isAuthenticated) {
+            return ResponseEntity.ok("Authentication successful.");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid email or password.");
+        }
+    }
 }
