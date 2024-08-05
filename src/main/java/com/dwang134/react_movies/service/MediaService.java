@@ -58,4 +58,14 @@ public class MediaService {
             return null;
         }
     }
+
+    public boolean deleteMedia(String id) {
+        Optional<Media> existingMedia = mediaRepository.findById(id);
+        if (existingMedia.isPresent()) {
+            mediaRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

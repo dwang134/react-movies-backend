@@ -16,12 +16,6 @@ public class MediaController {
     @Autowired
     private MediaService mediaService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Media> addMedia(@RequestBody Media media) {
-        Media createdMedia = mediaService.addMedia(media);
-        return ResponseEntity.ok(createdMedia);
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<Media>> getAllMedia() {
         List<Media> mediaList = mediaService.getAllMedia();
@@ -93,6 +87,22 @@ public class MediaController {
         Media updatedMedia = mediaService.updateMedia(id, media);
         if (updatedMedia != null) {
             return ResponseEntity.ok(updatedMedia);
+        } else {
+            return ResponseEntity.badRequest().body("Invalid media ID.");
+        }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Media> addMedia(@RequestBody Media media) {
+        Media createdMedia = mediaService.addMedia(media);
+        return ResponseEntity.ok(createdMedia);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteMedia(@PathVariable String id) {
+        boolean isDeleted = mediaService.deleteMedia(id);
+        if (isDeleted) {
+            return ResponseEntity.ok("Media deleted successfully.");
         } else {
             return ResponseEntity.badRequest().body("Invalid media ID.");
         }
