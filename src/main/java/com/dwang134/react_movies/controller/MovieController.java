@@ -25,4 +25,9 @@ public class MovieController {
     public MoviesNowPlaying getMovieById(@PathVariable int id) {
         return movieService.getMovieById(id);
     }
+
+    @GetMapping("/search")
+    public List<MoviesNowPlaying> searchMoviesByTitle(@RequestParam String title) {
+        return movieService.searchMoviesByTitle(title);
+    }
 }

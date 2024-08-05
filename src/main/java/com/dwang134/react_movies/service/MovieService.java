@@ -20,4 +20,8 @@ public class MovieService {
     public MoviesNowPlaying getMovieById(int id) {
         return movieRepository.findById(id).orElse(null);
     }
+
+    public List<MoviesNowPlaying> searchMoviesByTitle(String title) {
+        return movieRepository.findByTitleRegexIgnoreCase(title);
+    }
 }

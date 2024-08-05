@@ -31,11 +31,12 @@ public class SecurityConfig {
                 })
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection for simplicity
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/trending/all", "/api/trending/all/{id}", "/api/trending/movie", "/api/trending/movie/{id}","/api/trending/person", "/api/trending/person/{personId}","/api/tv/airing_today", "api/tv/airing_today/{id}","/api/movie/now_playing", "api/movie/now_playing/{id}", "/api/users/register").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/users/66aff964cd765176287bdc4b").authenticated()
+                        .requestMatchers("/api/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        //.loginPage("/login")
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll());
