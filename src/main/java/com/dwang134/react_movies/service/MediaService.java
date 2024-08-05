@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MediaService {
@@ -22,6 +23,20 @@ public class MediaService {
     }
 
     public Media getMediaById(String id) {
-        return mediaRepository.findById(id).orElse(null);
+        Optional<Media> media = mediaRepository.findById(id);
+        return media.orElse(null);
+    }
+
+    public List<Media> getMediaByType(String type) {
+        return mediaRepository.findByType(type);
+    }
+
+    public Media getMediaByIdAndType(String id, String type) {
+        Optional<Media> media = mediaRepository.findByIdAndType(id, type);
+        return media.orElse(null);
+    }
+
+    public List<Media> getFeaturedMediaByType(String type) {
+        return mediaRepository.findByTypeAndFeaturedTrue(type);
     }
 }

@@ -37,4 +37,42 @@ public class MediaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/movie")
+    public ResponseEntity<List<Media>> getAllMovies() {
+        List<Media> mediaList = mediaService.getMediaByType("movie");
+        return ResponseEntity.ok(mediaList);
+    }
+
+    @GetMapping("/tv")
+    public ResponseEntity<List<Media>> getAllTVShows() {
+        List<Media> mediaList = mediaService.getMediaByType("tv");
+        return ResponseEntity.ok(mediaList);
+    }
+
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<Media> getMovieById(@PathVariable String id) {
+        Media media = mediaService.getMediaByIdAndType(id, "movie");
+        if (media != null) {
+            return ResponseEntity.ok(media);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/tv/{id}")
+    public ResponseEntity<Media> getTVShowById(@PathVariable String id) {
+        Media media = mediaService.getMediaByIdAndType(id, "tv");
+        if (media != null) {
+            return ResponseEntity.ok(media);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/all/featured")
+    public ResponseEntity<List<Media>> getFeaturedMedia(@RequestParam String type) {
+        List<Media> mediaList = mediaService.getFeaturedMediaByType(type);
+        return ResponseEntity.ok(mediaList);
+    }
 }
