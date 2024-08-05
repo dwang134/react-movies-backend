@@ -19,8 +19,8 @@ public class TvAiringTodayService {
         return tvRepository.findAll();
     }
 
-    public TvAiringToday getAiringTodayById(int id) {
-        return tvRepository.findById(id).orElse(null);
+    public Optional<TvAiringToday> getAiringTodayById(int id) {
+        return tvRepository.findById(id);
     }
 
     public List<TvAiringToday> searchByTitle(String name) {
