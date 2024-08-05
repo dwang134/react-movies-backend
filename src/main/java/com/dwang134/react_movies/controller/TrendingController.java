@@ -20,7 +20,7 @@ public class TrendingController {
 
     @GetMapping("/all")
     public List<TrendingAll> getAllTrendingAll() {
-        return trendingService.getAllTrendingAll();w
+        return trendingService.getAllTrendingAll();
     }
 
     @GetMapping("/all/{id}")
