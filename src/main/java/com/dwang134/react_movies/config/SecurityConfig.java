@@ -11,6 +11,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -21,10 +23,9 @@ public class SecurityConfig {
                 .cors(cors -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowCredentials(true);
-                    config.addAllowedOrigin("*");
+                    config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://react-movies-backend-knbt.onrender.com/", "https://react-movies-ruddy.vercel.app/")); // Add multiple origins here
                     config.addAllowedHeader("*");
                     config.addAllowedMethod("*");
-
                     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
                     source.registerCorsConfiguration("/**", config);
                     cors.configurationSource(source);
