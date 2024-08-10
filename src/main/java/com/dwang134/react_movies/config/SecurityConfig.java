@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/register").permitAll() // Allow access to the authenticate endpoint
                         .requestMatchers("/api/users/authenticate").permitAll() // Allow access to the authenticate endpoint
-                        .requestMatchers("/api/users/*").authenticated() // Secure other /api/users/* endpoints
+//                        .requestMatchers("/api/users/*").authenticated() // Secure other /api/users/* endpoints
                         .requestMatchers("/api/**").permitAll() // Allow access to other API endpoints
                         .anyRequest().permitAll()
                 )
