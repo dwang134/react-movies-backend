@@ -30,12 +30,12 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public boolean authenticateUser(String email, String password) {
-        Optional<Customer> userOptional = customerRepository.findByEmail(email);
-        if (userOptional.isPresent()) {
-            Customer user = userOptional.get();
-            return passwordEncoder.matches(password, user.getPassword());
+    public Optional<Customer> authenticateUser(String email, String password) {
+        Optional<Customer> user = customerRepository.findByEmail(email);
+        if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
+            return user;
+        } else {
+            return Optional.empty();
         }
-        return false;
     }
 }

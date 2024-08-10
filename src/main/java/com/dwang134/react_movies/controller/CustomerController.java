@@ -50,10 +50,10 @@ public class CustomerController {
                 user.getPassword() == null || user.getPassword().isEmpty()) {
             return ResponseEntity.badRequest().body("Email and password are required.");
         }
-
-        boolean isAuthenticated = customerService.authenticateUser(user.getEmail(), user.getPassword());
-        if (isAuthenticated) {
-            return ResponseEntity.ok("Authentication successful.");
+        Optional<Customer> authenticatedUser = customerService.authenticateUser(user.getEmail(), user.getPassword());
+        if (authenticatedUser.isPresent()) {
+            // You may want to return only specific fields instead of the entire user object
+            return ResponseEntity.ok(authenticatedUser.get());
         } else {
             return ResponseEntity.badRequest().body("Invalid email or password.");
         }
