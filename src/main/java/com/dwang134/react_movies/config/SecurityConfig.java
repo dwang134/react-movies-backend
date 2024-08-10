@@ -32,6 +32,7 @@ public class SecurityConfig {
                 })
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection for simplicity
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/users/register").permitAll() // Allow access to the authenticate endpoint
                         .requestMatchers("/api/users/authenticate").permitAll() // Allow access to the authenticate endpoint
                         .requestMatchers("/api/users/*").authenticated() // Secure other /api/users/* endpoints
                         .requestMatchers("/api/**").permitAll() // Allow access to other API endpoints
